@@ -15,11 +15,18 @@ public class InputController
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            Vector3 mouseScreenPos = Input.mousePosition;
 
-            if(hit.collider != null)
+            mouseScreenPos.z = Mathf.Abs(Camera.main.transform.position.z); // „À·« 10
+
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mouseScreenPos);
+            Vector2 mousePos2D = new Vector2(mouseWorldPos.x, mouseWorldPos.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+            if (hit.collider != null)
             {
+                Debug.Log("This is");
                 Touchables touchable = hit.collider.GetComponent<Touchables>();
                 if(touchable != null)
                 {
