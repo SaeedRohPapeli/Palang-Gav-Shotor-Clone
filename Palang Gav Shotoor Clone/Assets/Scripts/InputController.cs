@@ -26,8 +26,8 @@ public class InputController
 
             if (hit.collider != null)
             {
-                Debug.Log("This is");
                 Touchables touchable = hit.collider.GetComponent<Touchables>();
+                Debug.Log("This is" + hit.collider.gameObject.name);
                 if(touchable != null)
                 {
                     _isTouched = true;

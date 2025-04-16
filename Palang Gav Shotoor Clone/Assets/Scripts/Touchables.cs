@@ -4,10 +4,11 @@ using UnityEngine;
 
 
 
-public class Touchables : MonoBehaviour, ITouchable
+public class Touchables : MonoBehaviour
 {
     public FEATURE feature;
     public float speed;
+    private bool isColliderEnter = false;
 
     private void OnEnable()
     {
@@ -31,9 +32,40 @@ public class Touchables : MonoBehaviour, ITouchable
         feature = f;
     }
 
-    public void OnClick()
+    public void ChangeActOnCollision(Collider2D collision)
     {
-        Debug.Log("Clicked on " + this.gameObject.name);
+        if (collision.tag != "destroyer" && !isColliderEnter)
+        {
+            if (feature == FEATURE.R_WALK)
+            {
+                feature = FEATURE.L_WALK;
+            }
+            else if (feature == FEATURE.L_WALK)
+            {
+                feature = FEATURE.R_WALK;
+            }
+            else if (feature == FEATURE.U_WALK)
+            {
+                feature = FEATURE.D_WALK;
+
+            }
+            else if (feature == FEATURE.D_WALK)
+            {
+                feature = FEATURE.U_WALK;
+            }
+            Debug.Log("feature is " + feature.ToString());
+            isColliderEnter = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        ChangeActOnCollision(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isColliderEnter = false;
     }
 
 }

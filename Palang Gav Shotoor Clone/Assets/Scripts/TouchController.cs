@@ -7,7 +7,10 @@ public enum FEATURE
     None,
     R_WALK,
     L_WALK,
+    U_WALK,
+    D_WALK,
     LASER,
+    LAMP,   
     NOTTOUCHED
 }
 
@@ -22,13 +25,19 @@ public class TouchController : MonoBehaviour
     public FEATURE _firstTouchableFeature = FEATURE.NOTTOUCHED;
     public FEATURE _lastTouchableFeature = FEATURE.NOTTOUCHED;
 
-    public ITouchable _firstTouchable;
-    public ITouchable _lastTouchable;
+    public Touchables _firstTouchable;
+    public Touchables _lastTouchable;
 
     private void Awake()
     {
         _features = new Features();
         _inputController = new InputController();
+    }
+
+    private void Start()
+    {
+        _firstTouchableFeature = FEATURE.NOTTOUCHED;
+        _lastTouchableFeature = FEATURE.NOTTOUCHED;
     }
 
     private void Update()
@@ -94,6 +103,12 @@ public class TouchController : MonoBehaviour
                 break;
             case FEATURE.L_WALK:
                 _features.Move(t.gameObject.transform, Vector3.left, t.speed);
+                break;
+            case FEATURE.U_WALK:
+                _features.Move(t.gameObject.transform, Vector3.up, t.speed);
+                break;
+            case FEATURE.D_WALK:
+                _features.Move(t.gameObject.transform, Vector3.down, t.speed);
                 break;
             case FEATURE.LASER:
                 break;
