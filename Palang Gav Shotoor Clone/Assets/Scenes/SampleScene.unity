@@ -5547,6 +5547,7 @@ GameObject:
   - component: {fileID: 878697243}
   - component: {fileID: 878697242}
   - component: {fileID: 878697244}
+  - component: {fileID: 878697245}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -5568,6 +5569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchController: {fileID: 250898332}
   uiController: {fileID: 1462780344}
+  createLevel: {fileID: 878697245}
   delay: 0
 --- !u!4 &878697243
 Transform:
@@ -5596,6 +5598,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3023adc1c4b5634a8b3ffdbfd63040c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &878697245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878697241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1d39b9958c89e40b867cda0f17b5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 11400000, guid: 0e7267d7712f7f94998eda28d13f6a1f, type: 2}
+  wallPrefab: {fileID: 393353282967597935, guid: 2a588c3aac37f9745baa60fc61f27bd2, type: 3}
+  waterPrefab: {fileID: 606421866866884297, guid: 5f69dc942aef9884a9a69e63d773cd44, type: 3}
+  floor: {fileID: 4890813919030053103, guid: ce834783ed5357d499dfc7efef1bff03, type: 3}
 --- !u!1001 &883014664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12444,7 +12463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2074999942
 Transform:
   m_ObjectHideFlags: 0

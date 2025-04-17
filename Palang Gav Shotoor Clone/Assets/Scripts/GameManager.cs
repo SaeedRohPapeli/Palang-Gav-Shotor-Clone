@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private TouchController touchController;
     [SerializeField]
     private UIController uiController;
+    [SerializeField]
+    private CreateLevels createLevel;
 
     private PLAYMODES playMode;
     public float delay = 0;
@@ -34,11 +36,6 @@ public class GameManager : MonoBehaviour
     {
         if (EventHandler.Instance != null)
             EventHandler.Instance.WinLevel -= IsLevelWin;
-    }
-
-    private void Awake()
-    {
-        
     }
 
     private void Start()
@@ -69,6 +66,7 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         uiController.SetStartLevelUI(true, "LEVEL" + levelCnt);
+        createLevel.CreateCurrentLevel(levelCnt);
         if (DelayToPlay(1f))
         {
             playMode = PLAYMODES.PLAY;
@@ -89,11 +87,6 @@ public class GameManager : MonoBehaviour
             isWinLevel = false;
         }
     }
-
-    private void PauseGame()
-    {
-
-    }   
     
     private void WinGame()
     {
