@@ -7,25 +7,27 @@ using UnityEngine;
 public class EventHandler : MonoBehaviour
 {
     private static EventHandler _instance;
-    public static EventHandler Instance;
+    public static EventHandler Instance { get { return _instance; } }
 
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
             _instance = this;
+            DontDestroyOnLoad(this);
         }
         else
             Destroy(this);
 
     }
 
-    public event Action WinLevel;
-    public void OnWinLevel()
+    public delegate bool IsWinLevel();
+    public event IsWinLevel onIsWinLevel;
+    public void OnIsWinLevel()
     {
-        if(WinLevel != null)
+        if(onIsWinLevel != null)
         {
-            WinLevel?.Invoke();
+            onIsWinLevel?.Invoke();
         }
     }
 }

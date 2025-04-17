@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Touchables : MonoBehaviour
 {
+    public Vector2 direction;
     public FEATURE feature;
     public float speed;
     private bool isColliderEnter = false;
@@ -34,33 +35,34 @@ public class Touchables : MonoBehaviour
 
     public void ChangeActOnCollision(Collider2D collision)
     {
-        if (collision.tag != "destroyer" && !isColliderEnter)
+        if (feature == FEATURE.R_WALK)
         {
-            if (feature == FEATURE.R_WALK)
-            {
-                feature = FEATURE.L_WALK;
-            }
-            else if (feature == FEATURE.L_WALK)
-            {
-                feature = FEATURE.R_WALK;
-            }
-            else if (feature == FEATURE.U_WALK)
-            {
-                feature = FEATURE.D_WALK;
-
-            }
-            else if (feature == FEATURE.D_WALK)
-            {
-                feature = FEATURE.U_WALK;
-            }
-            Debug.Log("feature is " + feature.ToString());
-            isColliderEnter = true;
+            feature = FEATURE.L_WALK;
         }
+        else if (feature == FEATURE.L_WALK)
+        {
+            feature = FEATURE.R_WALK;
+        }
+        else if (feature == FEATURE.U_WALK)
+        {
+            feature = FEATURE.D_WALK;
+
+        }
+        else if (feature == FEATURE.D_WALK)
+        {
+            feature = FEATURE.U_WALK;
+        }
+        Debug.Log("feature is " + feature.ToString());
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ChangeActOnCollision(collision);
+        if (collision.tag != "Destroyer" && collision.tag != "Green" && !isColliderEnter)
+        {
+            ChangeActOnCollision(collision);
+            isColliderEnter = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

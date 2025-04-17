@@ -8,7 +8,7 @@ public class GreenCube : MonoBehaviour
     {
         if(collision.tag == "Green")
         {
-            EventHandler.Instance.OnWinLevel();
+            EventHandler.Instance.OnIsWinLevel();
         }
     }
 }
