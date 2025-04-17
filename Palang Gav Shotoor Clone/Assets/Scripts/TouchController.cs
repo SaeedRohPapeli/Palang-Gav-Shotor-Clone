@@ -16,8 +16,6 @@ public enum FEATURE
 
 public class TouchController : MonoBehaviour
 {
-    public static List<Touchables> touchables = new List<Touchables>();
-
     private Features _features;
     private InputController _inputController;
     private bool _isSwitched;
@@ -40,23 +38,21 @@ public class TouchController : MonoBehaviour
         _lastTouchableFeature = FEATURE.NOTTOUCHED;
     }
 
-    private void Update()
+    public void Switch()
     {
-        Touch();
-
         if (!_isSwitched)
             SwitchFeatures();
     }
 
-    private void LateUpdate()
+    public void DoActOfObjects()
     {
-        foreach (var item in touchables)
+        foreach (var item in GameManager.touchables)
         {
             DoJob(item);
         }
     }
 
-    private void Touch()
+    public void Touch()
     {
         _inputController.Touch();
         if (_firstTouchableFeature == FEATURE.NOTTOUCHED)

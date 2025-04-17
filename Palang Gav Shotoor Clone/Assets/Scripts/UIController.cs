@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class UIController : MonoBehaviour
     private GameObject winUI;
     [SerializeField]
     private GameObject startLevelUI;
+    [SerializeField]
+    private Text levelText;
 
     public void SetWinUI()
     {
@@ -17,10 +20,8 @@ public class UIController : MonoBehaviour
     public void SetStartLevelUI(bool isActive, string levelName)
     {
         if(winUI.activeInHierarchy)
-        {
             winUI.SetActive (false);
-        }
-
+        levelText.text = levelName;
         startLevelUI.SetActive (isActive);
     }
 }

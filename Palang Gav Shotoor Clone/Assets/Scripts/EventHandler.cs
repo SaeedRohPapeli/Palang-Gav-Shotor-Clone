@@ -21,13 +21,12 @@ public class EventHandler : MonoBehaviour
 
     }
 
-    public delegate bool IsWinLevel();
-    public event IsWinLevel onIsWinLevel;
+    public event Action WinLevel;
     public void OnIsWinLevel()
     {
-        if(onIsWinLevel != null)
+        if(WinLevel != null)
         {
-            onIsWinLevel?.Invoke();
+            WinLevel?.Invoke();
         }
     }
 }

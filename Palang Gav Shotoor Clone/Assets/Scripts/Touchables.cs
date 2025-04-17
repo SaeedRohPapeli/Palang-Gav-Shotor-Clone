@@ -13,14 +13,14 @@ public class Touchables : MonoBehaviour
 
     private void OnEnable()
     {
-        if(this != null && !TouchController.touchables.Contains(this))
-            TouchController.touchables.Add(this);
+        if(this != null && !GameManager.touchables.Contains(this))
+            GameManager.touchables.Add(this);
     }
 
     private void OnDestroy()
     {
-        if(this != null && TouchController.touchables.Contains(this))
-            TouchController.touchables.Remove(this);
+        if(this != null && GameManager.touchables.Contains(this))
+            GameManager.touchables.Remove(this);
     }
 
     public FEATURE GetFeatureType()
